@@ -38,6 +38,12 @@ define(function (require, exports, module) {
     this.lightbox.show(slide);
   };
 
+  SlideshowView.prototype.showNextSlide = function() {
+    this.currentIndex++;
+    this.currentIndex = this.currentIndex%this.slides.length;
+    this.showCurrentSlide();
+  };
+
   function _createLightbox() {
     /*jshint validthis:true */
     this.lightbox = new Lightbox(this.options.lightboxOpts);
@@ -55,6 +61,8 @@ define(function (require, exports, module) {
         size: this.options.size,
         photoUrl: data[i]
       });
+      
+      slide.on('click', this.showNextSlide.bind(this));
       this.slides.push(slide);
     }
 

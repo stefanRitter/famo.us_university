@@ -4,22 +4,36 @@ define(function (require, exports, module) {
   var View = require('famous/core/View'),
       Surface = require('famous/core/Surface'),
       Transform = require('famous/core/Transform'),
-      StateModifier = require('famous/modifiers/StateModifier');
+      StateModifier = require('famous/modifiers/StateModifier'),
+      Lightbox = require('famous/views/Lightbox');
 
-  var SlideView = require('views/SlideView');
 
   function SlideshowView() {
     View.apply(this, arguments);
 
-    var slideView = new SlideView();
+    this.rootModifier = new StateModifier({
+      size: this.options.size,
+      origin: [0.5, 0],
+      align: [0.5, 0]
+    });
 
-    this.add(slideView);
+    this.mainNode = this.add(this.rootModifier);
+    
+    _createLightBox.call(this);
   }
 
   SlideshowView.prototype = Object.create(View.prototype);
   SlideshowView.prototype.constructor = SlideshowView;
+  SlideshowView.DEFAULT_OPTIONS = {
+    size: [450, 500],
+    lightboxOpts: {}
+  };
 
-  SlideshowView.DEFAULT_OPTIONS = {};
+  function _createLightBox() {
+    /*jshint validthis:true */
+    this.lightbox = new Lightbox(this.options.lightboxOpts);
+    this.mainNode.add(this.lightbox);
+  }
 
   module.exports = SlideshowView;
 });

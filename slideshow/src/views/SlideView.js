@@ -7,7 +7,7 @@ define(function (require, exports, module) {
       StateModifier = require('famous/modifiers/StateModifier'),
       ImageSurface = require('famous/surfaces/ImageSurface');
 
-  var slideData = require('data/SlideData');
+  var slideData = require('data/slideData');
 
   function SlideView() {
     View.apply(this, arguments);

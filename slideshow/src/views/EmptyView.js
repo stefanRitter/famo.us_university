@@ -1,7 +1,8 @@
-
 // basic View for our app
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
+  'use strict';
+  
   var View = require('famous/core/View'),
       Surface = require('famous/core/Surface'),
       Transform = require('famous/core/Transform'),

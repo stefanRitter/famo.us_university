@@ -64,7 +64,8 @@ define(function (require, exports, module) {
     var background = new Surface({
       properties: {
         backgroundColor: '#FFFFF5',
-        boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)'
+        boxShadow: '0 10px 20px -5px rgba(0, 0, 0, 0.5)',
+        cursor: 'pointer'
       }
     });
 

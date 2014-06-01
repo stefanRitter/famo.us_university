@@ -64,7 +64,7 @@ define(function (require, exports, module) {
       }
     });
     slideshowContainer.add(slideshowView);
-    
+    slideshowContainer.context.setPerspective(1000);
     this.add(slideshowModifier).add(slideshowContainer);
   }
 

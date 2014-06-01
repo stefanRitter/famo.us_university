@@ -7,6 +7,8 @@ define(function (require, exports, module) {
       StateModifier = require('famous/modifiers/StateModifier'),
       Lightbox = require('famous/views/Lightbox');
 
+  var SlideView = require('views/SlideView');
+
 
   function SlideshowView() {
     View.apply(this, arguments);
@@ -19,20 +21,44 @@ define(function (require, exports, module) {
 
     this.mainNode = this.add(this.rootModifier);
     
-    _createLightBox.call(this);
+    _createLightbox.call(this);
+    _createSlides.call(this);
   }
 
   SlideshowView.prototype = Object.create(View.prototype);
   SlideshowView.prototype.constructor = SlideshowView;
   SlideshowView.DEFAULT_OPTIONS = {
     size: [450, 500],
+    data: [],
     lightboxOpts: {}
   };
 
-  function _createLightBox() {
+  SlideshowView.prototype.showCurrentSlide = function() {
+    var slide = this.slides[this.currentIndex];
+    this.lightbox.show(slide);
+  };
+
+  function _createLightbox() {
     /*jshint validthis:true */
     this.lightbox = new Lightbox(this.options.lightboxOpts);
     this.mainNode.add(this.lightbox);
+  }
+
+  function _createSlides() {
+    /*jshint validthis:true */
+    this.slides = [];
+    this.currentIndex = 0;
+
+    var data = this.options.data;
+    for (var i = 0; i < data.length; i++) {
+      var slide = new SlideView({
+        size: this.options.size,
+        photoUrl: data[i]
+      });
+      this.slides.push(slide);
+    }
+
+    this.showCurrentSlide();
   }
 
   module.exports = SlideshowView;

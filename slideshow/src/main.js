@@ -13,7 +13,7 @@ define(function (require, exports, module) {
   function initApp(data) {
     data = slideData.parse(data);
 
-    var appView = new AppView();
+    var appView = new AppView({data: data});
     mainContext.add(appView);
   }
 

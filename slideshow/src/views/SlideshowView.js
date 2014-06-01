@@ -5,7 +5,8 @@ define(function (require, exports, module) {
       Surface = require('famous/core/Surface'),
       Transform = require('famous/core/Transform'),
       StateModifier = require('famous/modifiers/StateModifier'),
-      Lightbox = require('famous/views/Lightbox');
+      Lightbox = require('famous/views/Lightbox'),
+      Easing = require('famous/transitions/Easing');
 
   var SlideView = require('views/SlideView');
 
@@ -30,7 +31,12 @@ define(function (require, exports, module) {
   SlideshowView.DEFAULT_OPTIONS = {
     size: [450, 500],
     data: [],
-    lightboxOpts: {}
+    lightboxOpts: {
+      inTransform: Transform.translate(300,0,0),
+      outTransform: Transform.translate(-500,0,0),
+      inTransition: {duration: 500, curve: Easing.outBack},
+      outTransition: {duration: 350, curve: Easing.inQuad}
+    }
   };
 
   SlideshowView.prototype.showCurrentSlide = function() {

@@ -2,10 +2,10 @@ define(function (require, exports, module) {
   'use strict';
   
   var View = require('famous/core/View'),
-      Surface = require('famous/core/Surface'),
       Transform = require('famous/core/Transform'),
       StateModifier = require('famous/modifiers/StateModifier'),
-      ImageSurface = require('famous/surfaces/ImageSurface');
+      ImageSurface = require('famous/surfaces/ImageSurface'),
+      ContainerSurface = require('famous/surfaces/ContainerSurface');
 
   var SlideshowView = require('views/SlideshowView');
 
@@ -53,12 +53,19 @@ define(function (require, exports, module) {
     });
 
     var slideshowModifier = new StateModifier({
-      origin: [0.5,0],
+      origin: [0.5, 0],
       align: [0.5, 0],
       transform: Transform.translate(0, this.options.slidePosition, 0)
     });
 
-    this.add(slideshowModifier).add(slideshowView);
+    var slideshowContainer = new ContainerSurface({
+      properties:{
+        overflow: 'hidden'
+      }
+    });
+    slideshowContainer.add(slideshowView);
+    
+    this.add(slideshowModifier).add(slideshowContainer);
   }
 
   module.exports = AppView;

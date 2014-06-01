@@ -4,7 +4,10 @@ define(function (require, exports, module) {
   var View = require('famous/core/View'),
       Surface = require('famous/core/Surface'),
       Transform = require('famous/core/Transform'),
-      StateModifier = require('famous/modifiers/StateModifier');
+      StateModifier = require('famous/modifiers/StateModifier'),
+      ImageSurface = require('famous/surfaces/ImageSurface');
+
+  var slideData = require('data/SlideData');
 
   function SlideView() {
     View.apply(this, arguments);
@@ -16,6 +19,7 @@ define(function (require, exports, module) {
 
     _createBackground.call(this);
     _createFilm.call(this);
+    _createPhoto.call(this);
     
   }
 
@@ -23,7 +27,9 @@ define(function (require, exports, module) {
   SlideView.prototype.constructor = SlideView;
   SlideView.DEFAULT_OPTIONS = {
     size: [400, 450],
-    filmBorder: 15
+    filmBorder: 15,
+    photoBorder: 3,
+    photoUrl: slideData.defaultImage
   };
 
   function _createBackground() {
@@ -58,6 +64,27 @@ define(function (require, exports, module) {
 
     // NOTE: both zIndex and z transform are 1
     this.mainNode.add(filmModifier).add(film);
+  }
+
+  function _createPhoto() {
+    /*jshint validthis:true */
+    var photoSize = this.options.filmSize - 2*this.options.photoBorder;
+
+    var photo = new ImageSurface({
+      size: [photoSize, photoSize],
+      content: this.options.photoUrl,
+      properties: {
+        zIndex: 2
+      }
+    });
+
+    var photoModifier = new StateModifier({
+      origin: [0.5, 0],
+      align: [0.5, 0],
+      transform: Transform.translate(0, this.options.filmBorder+this.options.photoBorder, 2)
+    });
+
+    this.mainNode.add(photoModifier).add(photo);
   }
 
   module.exports = SlideView;

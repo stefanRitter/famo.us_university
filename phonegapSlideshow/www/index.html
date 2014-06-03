@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        
+        <title>famo.us Slideshow</title>
+        
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <!-- shims for backwards compatibility -->
+        <script type="text/javascript" src="src/lib/functionPrototypeBind.js"></script>
+        <script type="text/javascript" src="src/lib/classList.js"></script>
+        <script type="text/javascript" src="src/lib/requestAnimationFrame.js"></script>
+        
+        <!-- module loader -->
+        <script type="text/javascript" src="src/lib/require.js"></script>
+
+        <!-- famous -->
+        <link rel="stylesheet" type="text/css" href="css/famous.css" />
+        <script type="text/javascript" src="src/lib/famous.min.js"></script>
+        
+        <!-- app code -->
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <script type="text/javascript">
+            require.config({
+                baseUrl: './src/'
+            });
+            require(['main']);
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>

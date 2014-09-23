@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="famousUniversity">
 <head>
   <title>famo.us / Angular</title>
   <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
@@ -13,7 +13,14 @@
 <body>
 
   <fa-app ng-controller='Lesson1Ctrl' id="app">
-    <fa-surface>Hello world</fa-surface>
+    <fa-modifier fa-size="[100, 100]" fa-translate="[100, 150, 0]">
+      
+      <fa-surface fa-background-color="'#FA5C4F'" fa-color="'#fff'">
+        {{databound.content}}
+        <input ng-model="databound.content"></input>
+      </fa-surface>
+    
+    </fa-modifier>
   </fa-app> 
 
   <script src="bower_components/angular/angular.js"></script>

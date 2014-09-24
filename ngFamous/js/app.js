@@ -1,7 +1,8 @@
 angular.module('famousUniversity', ['famous.angular']);
 
+
 angular.module('famousUniversity')
-  .controller('Lesson1Ctrl', function($scope) {
+  .controller('Lesson1Ctrl', function ($scope) {
     $scope.databound = {
       content: "Change me!"
     };
@@ -22,8 +23,9 @@ angular.module('famousUniversity')
     ];
   });
 
+
 angular.module('famousUniversity')
-  .controller('Lesson2Ctrl', function($scope) {
+  .controller('Lesson2Ctrl', function ($scope) {
     $scope.myGridLayoutOptions = {
       dimensions: [2, 3]
     };

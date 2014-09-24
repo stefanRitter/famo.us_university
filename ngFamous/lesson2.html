@@ -2,6 +2,7 @@
 <html ng-app="famousUniversity">
 <head>
   <title>famo.us / Angular</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,7 +15,15 @@
 
   <fa-app ng-controller='Lesson2Ctrl' id="app">
     <fa-grid-layout fa-options="myGridLayoutOptions">
-    
+      <fa-modifier
+        ng-repeat="item in list"
+        fa-size="[100, 100]"
+        fa-origin="[0.5, 0.5]"
+        fa-align="[0.5, 0.5]">
+          <fa-surface fa-background-color="item.bgColor" class="surface">
+            {{item.content}}
+          </fa-surface>
+      </fa-modifier>
     </fa-grid-layout>
   </fa-app>
 

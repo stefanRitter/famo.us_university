@@ -39,3 +39,36 @@ angular.module('famousUniversity')
       {content: "cool!", bgColor: "#268bd2"}
     ];
   });
+
+
+angular.module('famousUniversity')
+  .controller('Lesson3Ctrl', function ($scope, $famous) {
+    
+    var Transitionable = $famous['famous/transitions/Transitionable'];
+    var Easing = $famous['famous/transitions/Easing'];
+
+    $scope.boxes = [];
+
+    var arrayOfCurves = ['inOutQuad', 'inOutCubic', 'outQuint', 'outBack', 'inCirc', 'outElastic'];
+
+    for (var i = 0; i < arrayOfCurves.length; i++) {
+      var box = {
+        curve: arrayOfCurves[i],
+        position: new Transitionable([0, i * 75, 0])
+      };
+      $scope.boxes.push(box);
+    }
+
+
+    $scope.myTransitionable = new Transitionable([0, 0, 0]);
+
+    $scope.animate = function () {
+      for (var i = 0; i < $scope.boxes.length; i++) {
+        var box = $scope.boxes[i];
+        box.position.set([200, i * 75, 0], {
+          curve: Easing[box.curve],
+          duration: 2000
+        });
+      }
+    };
+  });

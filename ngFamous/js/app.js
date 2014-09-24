@@ -21,3 +21,9 @@ angular.module('famousUniversity')
       {content: "Rocks!", bgColor: "#cb4b16"}
     ];
   });
+
+angular.module('famousUniversity')
+  .controller('Lesson2Ctrl', function($scope){
+      $scope.myGridLayoutOptions = {
+        dimensions: [2, 3]
+      };

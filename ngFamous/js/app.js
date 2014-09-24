@@ -72,3 +72,30 @@ angular.module('famousUniversity')
       }
     };
   });
+
+
+angular.module('famousUniversity')
+  .controller('Lesson3Ctrl-chained', function($scope, $famous){
+    var Transitionable = $famous['famous/transitions/Transitionable'];
+    var SpringTransition = $famous['famous/transitions/SpringTransition'];
+    
+    Transitionable.registerMethod('spring', SpringTransition);
+    
+    $scope.scale = new Transitionable([1, 1, 1]);
+    $scope.angle = new Transitionable(0);
+
+    $scope.scaleAnimate = function () {
+      $scope.scale.set([2, 2, 1], {
+        period: 750,
+        method: 'spring',
+        dampingRatio: 0.3
+      }, 
+      function () {
+        $scope.angle.set(2 * Math.PI, {
+          method: 'spring',
+          period: 1000,
+          dampingRatio: 0.4
+        });
+      });
+    };
+  });

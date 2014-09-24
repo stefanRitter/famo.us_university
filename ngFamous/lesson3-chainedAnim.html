@@ -13,19 +13,26 @@
 </head>
 <body>
 
-  <fa-app ng-controller='Lesson3Ctrl' id="app">
+  <fa-app ng-controller='Lesson3Ctrl-chained' id="app">
     
-    <fa-modifier ng-repeat="box in boxes"
-                 fa-translate="box.position.get()"
-                 fa-size="[100, 50]">
+    <!-- scaling modifier -->
+    <fa-modifier fa-origin="[0.5, 0.5]"
+                 fa-align="[0.5, 0.5]"
+                 fa-scale="scale.get()">
+
+      <!-- outer red surface -->
+      <fa-surface fa-background-color="'#dc322f'"
+                  fa-size="[100, 100]"></fa-surface>
+
+      <!-- inner blue surface wrapped in modifier -->
+      <fa-modifier fa-size="[50, 50]" fa-rotate-z="angle.get()">
+        <fa-surface
+          fa-background-color="'#268bd2'"
+          fa-click="scaleAnimate()">
+          click
+        </fa-surface>
+      </fa-modifier>
       
-      <fa-surface
-        fa-background-color="'red'"
-        fa-click="animate()"
-        class="surface">
-        {{box.curve}}
-      </fa-surface>
-    
     </fa-modifier>
   
   </fa-app>

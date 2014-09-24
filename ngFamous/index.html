@@ -13,11 +13,14 @@
 <body>
 
   <fa-app ng-controller='Lesson1Ctrl' id="app">
-    <fa-modifier fa-size="[100, 100]" fa-translate="[100, 150, 0]">
+    
+    <fa-modifier 
+      ng-repeat="elem in list"
+      fa-size="[undefined, 100]" 
+      fa-translate="[0, $index * 120, 0]">
       
-      <fa-surface fa-background-color="'#FA5C4F'" fa-color="'#fff'">
-        {{databound.content}}
-        <input ng-model="databound.content"></input>
+      <fa-surface fa-background-color="elem.bgColor" fa-color="'#fff'">
+        {{elem.content}}
       </fa-surface>
     
     </fa-modifier>

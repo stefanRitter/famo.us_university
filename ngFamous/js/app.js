@@ -5,4 +5,19 @@ angular.module('famousUniversity')
     $scope.databound = {
       content: "Change me!"
     };
+    
+    $scope.generateSize = function() {
+      return [100, 100];
+    };
+
+    $scope.myModifier = {
+      translateValues: [50, 100, 0],
+      size: [100, 100]
+    };
+
+    $scope.list = [
+      {content: "Famous", bgColor: "#b58900"},
+      {content: "Angular", bgColor: "#dc322f"},
+      {content: "Rocks!", bgColor: "#cb4b16"}
+    ];
   });

@@ -1,4 +1,6 @@
 define(function (require, exports, module) {
+  'use strict';
+  
   var View          = require('famous/core/View');
   var Surface       = require('famous/core/Surface');
   var Transform     = require('famous/core/Transform');
@@ -6,7 +8,7 @@ define(function (require, exports, module) {
 
   var PageView =  require('views/PageView');
 
-  function AppView() {
+  function AppView () {
     View.apply(this, arguments);
 
     _createPageView.call(this);
@@ -18,7 +20,7 @@ define(function (require, exports, module) {
   AppView.DEFAULT_OPTIONS = {};
 
 
-  function _createPageView() {
+  function _createPageView () {
     this.pageView = new PageView();
     this.pageModifier = new StateModifier();
 

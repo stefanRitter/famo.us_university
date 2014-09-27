@@ -1,0 +1,13 @@
+body {
+  color: White;
+  font-family: 'Helvetica', Arial, san-serif;
+  font-weight: 300;
+}
+
+.red-bg {
+  background: Red;
+}
+
+.grey-bg {
+  background: Gray;
+}

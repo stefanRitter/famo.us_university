@@ -43,6 +43,8 @@ define(function (require, exports, module) {
                   this.options.stripWidth * Math.tan(-this.options.angle);
       this.stripModifiers[i].setTransform(Transform.translate(initX, initY, 0));
     }
+
+    this.featuredModifier.setOpacity(0);
   };
 
   MenuView.prototype.animateStrips = function () {
@@ -61,6 +63,10 @@ define(function (require, exports, module) {
         );
       }.bind(this, i), i * delay);
     }
+
+    Timer.setTimeout(function () {
+      this.featuredModifier.setOpacity(1, transition);
+    }.bind(this), transition.duration);
   };
 
 
@@ -90,7 +96,8 @@ define(function (require, exports, module) {
         featuredView = new FeaturedView();
 
     this.featuredModifier = new StateModifier({
-      transform: Transform.translate(0, yOffset, 0)
+      transform: Transform.translate(0, yOffset, 0),
+      opacity: 0
     });
     this.add(this.featuredModifier).add(featuredView);
   }

@@ -51,6 +51,7 @@ define(function (require, exports, module) {
       this.slideLeft();
     } else {
       this.slideRight();
+      this.menuView.animateStrips();
     }
     this.menuToggle = !this.menuToggle;
   };
@@ -101,6 +102,11 @@ define(function (require, exports, module) {
 
     sync.on('update', function (data) {
       var currentPosition = this.pageViewPos.get();
+      
+      if (currentPosition === 0 && data.velocity > 0) {
+        this.menuView.animateStrips();
+      }
+
       this.pageViewPos.set(Math.max(0, currentPosition + data.delta));
     }.bind(this));
 

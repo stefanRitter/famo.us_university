@@ -8,11 +8,13 @@ define(function (require, exports, module) {
   var Timer         = require('famous/utilities/Timer');
 
   var StripView     = require('views/StripView');
+  var FeaturedView  = require('views/FeaturedView');
 
   function MenuView() {
     View.apply(this, arguments);
 
     _createStripViews.call(this);
+    _createFeaturedView.call(this);
   }
 
   MenuView.prototype = Object.create(View.prototype);
@@ -81,6 +83,16 @@ define(function (require, exports, module) {
 
       yOffset += this.options.stripOffset;
     }
+  }
+
+  function _createFeaturedView () {
+    var yOffset = (this.options.stripData.length+2) * this.options.stripOffset,
+        featuredView = new FeaturedView();
+
+    this.featuredModifier = new StateModifier({
+      transform: Transform.translate(0, yOffset, 0)
+    });
+    this.add(this.featuredModifier).add(featuredView);
   }
 
   module.exports = MenuView;
